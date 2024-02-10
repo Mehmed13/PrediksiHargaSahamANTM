@@ -109,14 +109,15 @@ Fitur yang digunakan mulai dari EDA hingga tahap Forecasting hanya 'Date' dan 'C
 
    Kelebihan: <br>
 
-   -
-   -
-   -
+   - Mudah digunakan
+   - Penanganan komponen <i>seasonal</i> secara otomatis
+   - Mudah diinterpretasikan
+   - Cepat
 
-   ## Kekurangan: <br>
+   Kekurangan: <br>
 
-   -
-   -
+   - Tidak optimal untuk data kompleks
+   - Kurang fleksibel
 
 2. Model LSTM <br>
    Pemodelan diawali dengan membangun jaringan saraf tiruan. Pada proyek ini digunakan model sekuensial yang terdiri dari 6 <i> layer </i>. <i> Layer-layer </i> tersebut adalah 2 <i> LSTM layer </i>, 3 <i> Dense layer </i>, dan 1 <i> Drop layer </i>. Setelah dikonstruksi, model di-<i>compile </i> agar bisa dilatih. Terakhir, lakukan pelatihan menggunakan data <i> train </i> dengan memanggil <i> method </i> 'fit'.
@@ -129,16 +130,17 @@ Fitur yang digunakan mulai dari EDA hingga tahap Forecasting hanya 'Date' dan 'C
 
    Kelebihan: <br>
 
-   -
-   -
-   -
+   - Kemampuan pemodelan yang rumit
+   - Memahami konteks data sebelumnya
+   - Fleksibel
 
-   ## Kekurangan: <br>
+   Kekurangan: <br>
 
-   -
-   -
+   - Berpotensi <i>overfitting</i>
+   - Membutuhkan banyak data
+   - Implementasi kompleks
 
-Model final yang akan digunakan adalah model Prophet karena memiliki <i> error </i> yang lebih kecil dan
+Model final yang akan digunakan adalah model Prophet karena memiliki <i> error </i> yang lebih kecil dan lebih cocok untuk pemodelan yang sederhana dengan data yang cukup terbatas.
 
 ## Evaluation
 
@@ -147,9 +149,9 @@ Model final yang akan digunakan adalah model Prophet karena memiliki <i> error <
 Metrik Evaluasi yang digunakan pada proyek ini adalah <i> Mean Square Error </i> (MSE). <br>
 Formula MSE:
 
-$$ MSE = \frac{1}{n} \sum_{i=1}^n (y_{i}-y\_{pred,i})^2$$
+$$ MSE = \frac{1}{n} \sum*{i=1}^n (y*{i}-y\_{pred,i})^2$$
 
-Metrik RMSE bekerja dengan cara merata-ratakan jumlah dari selisih antara nilai sebenarnya dengan nilai prediksi (<i>error</i>) lalu rata-rata tersebut diakarkan sehingga nilai yang dihasilkan metrik tidak memiliki skala yang besar.
+Metrik MSE bekerja dengan cara merata-ratakan jumlah dari selisih antara nilai sebenarnya dengan nilai prediksi (<i>error</i>) lalu rata-rata tersebut diakarkan sehingga nilai yang dihasilkan metrik tidak memiliki skala yang besar.
 
 ### Hasil Evaluasi
 

@@ -52,49 +52,113 @@ Fitur yang digunakan mulai dari EDA hingga tahap Forecasting hanya 'Date' dan 'C
 ### <i>Exploratory Data Analysis </i> (EDA)
 
 - Statitika deskriptif
-  > Menampilkan data-data deskriptif seperti tipe data dari variabel, mean, min, max, kuartil, dan standard deviasi
-- <i> Missing Value Identification </i>
-  > Ditemukan satu baris yang memiliki nilai kosong pada fitur 'Close'
-- <i> Time Series Plot </i>
 
-  > Harga Saham ANTM bergerak <i> seasonal</i> dalam tren turun secara landai sebelum tahun 2020. Setelah itu, saham ANTM mengalami kenaikan drastis selama tahun 2020 yang disebabkan oleh krisis ekonomi selama pandemi COVID-19. Memasuki tahun 2021 hingga sekarang, harga saham ANTM bergerak secara <i>seasonal</i> dengan tren turun dalam jangka panjang.
+  Menampilkan data-data deskriptif seperti tipe data dari variabel, mean, min, max, kuartil, dan standard deviasi
+
+- <i> Missing Value Identification </i>
+
+  Ditemukan satu baris yang memiliki nilai kosong pada fitur 'Close'
+
+- <i> Time Series Plot </i>
 
   ![Gambar Harga Saham ANTM](https://drive.google.com/uc?export=download&id=1l6xBTXkD25lccLsX3-o2tyIcLAHzWmFu)
 
-- Distribusi Nilai
+  Harga Saham ANTM bergerak <i> seasonal</i> dalam tren turun secara landai sebelum tahun 2020. Setelah itu, saham ANTM mengalami kenaikan drastis selama tahun 2020 yang disebabkan oleh krisis ekonomi selama pandemi COVID-19. Memasuki tahun 2021 hingga sekarang, harga saham ANTM bergerak secara <i>seasonal</i> dengan tren turun dalam jangka panjang.
 
-  > Nilai pada fitur Close tidak terdistribusi normal
+- Distribusi Nilai
 
   ![Gambar Distribusi Nilai Fitur Close ](https://drive.google.com/uc?export=download&id=1lDm1-ncJXAowfo-G4AndHVO1AT4T5KCk)
 
+  Nilai pada fitur Close tidak terdistribusi normal
+
+- <i>Outliers Identification </i>
+
+  ![Gambar Boxplot Fitur Close ](https://drive.google.com/uc?export=download&id=1lElwNPzGpClnkIpnUJYbeNfvZtwqX4Hq)
+
+  Identifikasi dilakukan menggunakan teknik IQR dengan visualisasi dari boxplot. Hasil identifikasi tersebut adalah tidak ditemukan adanya outlier pada data
+
+- <i> Seasonal Decomposition </i>
+
+  ![Gambar Seasonal Decomposition](https://drive.google.com/uc?export=download&id=1lH3QNFSm2Lp7Tv21FHZ0782zmLT8oF5X)
+
+  Grafik <i> time series </i> dipecah menjadi komponen-komponen tren, seasonal, dan residu. Komponen tren menunjukkan tren yang muncul, Seasonal menunjukkan ada atau tidaknya pola seasonal, dan residu menunjukkan berapa pergeseran dari nilai yang seharusnya. Dari visualisasi tersebut dapat dilihat bahwa secara jangka panjang terdapat tren naik, sedangkan secara jangkap pendek-menengah terdapat tren turun. Grafik harga juga memiliki pola seasonal bersamaan dengan tren.
+
 ## Data Preparation
 
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
+- <i> Data Formatting </i> <br>
+  Data yang sudah diambil dari sumber tersedia diformat agar berada dalam frekuensi harian. Data bursa yang hanya buka pada <i>trading day</i> membuat perlu dilakukannya pengisian nilai pada hari-hari libur. Pengisian nilai dilakukan dengan metode <i> backward-fill </i> karena data harga pada hari libur sama dengan harga pada hari sebelum libur. <br>
+  Data Formatting ini dilakukan dengan tujuan membuat proses pembelajaran menjadi lebih <i> smooth </i>, terutama untuk model Prophet sehingga akurasi model dapat meningkat dengan signifikan.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
+- <i>Data Splitting </i> <br>
+  Data dibagi menjadi data <i> train </i> dan data <i> validation </i> dengan perbandingan 80:20. Proses ini perlu dilakukan untuk memvalidasi dan menguji seberapa bagus akurasi dari model yang dibuat sebelum digunakan untuk memprediksi data di masa depan.
 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+- <i>Data Scaling </i> <nr>
+  Nilai 'Close' diubah menjadi berada di dalam interval 0..1 dengan menggunakan teknik <i> MinMax Scaling </i>. Teknik ini dipilih karena data tidak terdistribusi normal dan skala sangat penting dalam tahap prediksi. <i> Data Scaling </i> dilakukan untuk mengurangi <i>noise </i> dan mempercepat proses pembelajaran menjadi konvergen.
+
+- <i> Data Transforming </i> <br>
+  Data diubah bentuknya agar bisa digunakan oleh model yang bersangkutan. DataFrame diubah menjadi bentuk <i>batch</i> untuk bisa digunakan pada model LSTM. Sementara itu, nama kolom pada DataFrame yang ada juga diubah menjadi kolom 'ds' untuk 'Date' dan 'y' untuk 'Close' agar bisa digunakan oleh model Prophet.
 
 ## Modeling
 
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+1. Model Prophet <br>
+   Pemodelan dilakukan dengan pertama-tama mengimpor model Prophet. Setelah itu, buat sebuah objek dari kelas Prophet dengan mengisi parameter 'interval_width' dengan 0.95 yang menandakan interval kepercayaan dari model adalah 95% dari <i> default </i> 80%. Terakhir, lakukan pelatihan menggunakan data <i> train </i> dengan memanggil <i> method </i> 'fit'.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
+   Parameter: <br>
 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+   - interval-width: interval kepercayaan model
+
+   Kelebihan: <br>
+
+   -
+   -
+   -
+
+   ## Kekurangan: <br>
+
+   -
+   -
+
+2. Model LSTM <br>
+   Pemodelan diawali dengan membangun jaringan saraf tiruan. Pada proyek ini digunakan model sekuensial yang terdiri dari 6 <i> layer </i>. <i> Layer-layer </i> tersebut adalah 2 <i> LSTM layer </i>, 3 <i> Dense layer </i>, dan 1 <i> Drop layer </i>. Setelah dikonstruksi, model di-<i>compile </i> agar bisa dilatih. Terakhir, lakukan pelatihan menggunakan data <i> train </i> dengan memanggil <i> method </i> 'fit'.
+
+   Parameter: <br>
+
+   - loss: <i> Loss Function </i>
+   - optimizer: <i> Optimizer Function </i>
+   - metrics: Metrik evaluasi
+
+   Kelebihan: <br>
+
+   -
+   -
+   -
+
+   ## Kekurangan: <br>
+
+   -
+   -
+
+Model final yang akan digunakan adalah model Prophet karena memiliki <i> error </i> yang lebih kecil dan
 
 ## Evaluation
 
 ### Metrik Evaluasi
 
-Metrik Evaluasi yang digunakan pada proyek ini adalah <i> Root Mean Square Error </i> (RMSE). <br>
-Formula RMSE:
+Metrik Evaluasi yang digunakan pada proyek ini adalah <i> Mean Square Error </i> (MSE). <br>
+Formula MSE:
 
-$$ RMSE = \sqrt{\frac{1}{n} \sum*{i=1}^n (y*{i}-y\_{pred,i})}$$
+$$ MSE = \frac{1}{n} \sum*{i=1}^n (y*{i}-y\_{pred,i})^2$$
 
 Metrik RMSE bekerja dengan cara merata-ratakan jumlah dari selisih antara nilai sebenarnya dengan nilai prediksi (<i>error</i>) lalu rata-rata tersebut diakarkan sehingga nilai yang dihasilkan metrik tidak memiliki skala yang besar.
 
 ### Hasil Evaluasi
+
+![Gambar Evaluasi MSE](https://drive.google.com/uc?export=download&id=1lKAoi_spaS51Cx2ot1lmS_FPNINB9Asy)
+
+Model Prophet memiliki <i> error </i> yang lebih kecil pada fase <i> train </i> dan fase <i> validation </i>.
+
+### Hasil <i>Forecasting</i>
+
+![Gambar Hasil Forecasting](https://drive.google.com/uc?export=download&id=1lVvv-mCtDoXINzLjr0WnJImoFSaSU0Hd)
+
+Berdasarkan grafik prediksi harga saham ANTM selama satu tahun, dapat diperkirakan bahwa waktu yang terbaik untuk membeli saham ANTM pada saat harga berada pada kisaran 1.350 - 1.400 dan menjualnya untuk <i> take profit </i> terdekat pada level 1.700

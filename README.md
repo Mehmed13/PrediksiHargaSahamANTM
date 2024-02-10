@@ -147,7 +147,7 @@ Model final yang akan digunakan adalah model Prophet karena memiliki <i> error <
 Metrik Evaluasi yang digunakan pada proyek ini adalah <i> Mean Square Error </i> (MSE). <br>
 Formula MSE:
 
-$$ MSE = \frac{1}{n} \sum*{i=1}^n (y*{i}-y\_{pred,i})^2$$
+$$ MSE = \frac{1}{n} \sum_{i=1}^n (y_{i}-y\_{pred,i})^2$$
 
 Metrik RMSE bekerja dengan cara merata-ratakan jumlah dari selisih antara nilai sebenarnya dengan nilai prediksi (<i>error</i>) lalu rata-rata tersebut diakarkan sehingga nilai yang dihasilkan metrik tidak memiliki skala yang besar.
 

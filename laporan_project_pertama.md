@@ -61,6 +61,12 @@ Fitur yang digunakan mulai dari EDA hingga tahap Forecasting hanya 'Date' dan 'C
 
   ![Gambar Harga Saham ANTM](https://drive.google.com/uc?export=download&id=1l6xBTXkD25lccLsX3-o2tyIcLAHzWmFu)
 
+- Distribusi Nilai
+
+  > Nilai pada fitur Close tidak terdistribusi normal
+
+  ![Gambar Distribusi Nilai Fitur Close ](https://drive.google.com/uc?export=download&id=1lDm1-ncJXAowfo-G4AndHVO1AT4T5KCk)
+
 ## Data Preparation
 
 Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.

@@ -62,27 +62,35 @@ Fitur yang digunakan mulai dari EDA hingga tahap Forecasting hanya 'Date' dan 'C
 
 - <i> Time Series Plot </i>
 
-  ![Gambar Harga Saham ANTM](https://ibb.co/VLmWgFH)
+  ![Gambar Harga Saham ANTM](https://i.ibb.co/D1pD9BG/harga-Saham-ANTM.png)
 
-  Harga Saham ANTM bergerak <i> seasonal</i> dalam tren turun secara landai sebelum tahun 2020. Setelah itu, saham ANTM mengalami kenaikan drastis selama tahun 2020 yang disebabkan oleh krisis ekonomi selama pandemi COVID-19. Memasuki tahun 2021 hingga sekarang, harga saham ANTM bergerak secara <i>seasonal</i> dengan tren turun dalam jangka panjang.
+  Gambar 1. Harga Saham ANTM 2019 - 2024
+
+  Pada gambar 1, Harga Saham ANTM bergerak <i> seasonal</i> dalam tren turun secara landai sebelum tahun 2020. Setelah itu, saham ANTM mengalami kenaikan drastis selama tahun 2020 yang disebabkan oleh krisis ekonomi selama pandemi COVID-19. Memasuki tahun 2021 hingga sekarang, harga saham ANTM bergerak secara <i>seasonal</i> dengan tren turun dalam jangka panjang.
 
 - Distribusi Nilai
 
-  ![Gambar Distribusi Nilai Fitur Close ](https://ibb.co/RDbtvM1)
+  ![Gambar Distribusi Nilai Fitur Close ](https://i.ibb.co/rw0q7Lg/perubahan-Harga-Saham-ANTM.png)
 
-  Nilai pada fitur Close tidak terdistribusi normal
+  Gambar 2. Distribusi Nilai Fitur Close
+
+  Pada gambar 2, nilai pada fitur Close tidak terdistribusi normal.
 
 - <i>Outliers Identification </i>
 
-  ![Gambar Boxplot Fitur Close ](https://ibb.co/ySFQcQ2)
+  ![Gambar Boxplot Fitur Close ](https://i.ibb.co/YZBLFLg/boxplot-Harga-Saham.png)
 
-  Identifikasi dilakukan menggunakan teknik IQR dengan visualisasi dari boxplot. Hasil identifikasi tersebut adalah tidak ditemukan adanya outlier pada data
+  Gambar 3. Boxplot Fitur Close
+
+  Pada gambar 3, identifikasi dilakukan menggunakan teknik IQR dengan visualisasi dari boxplot. Hasil identifikasi tersebut adalah tidak ditemukan adanya outlier pada data
 
 - <i> Seasonal Decomposition </i>
 
-  ![Gambar Seasonal Decomposition](https://ibb.co/JQCMSJy)
+  ![Gambar Seasonal Decomposition Fitur clode ](https://i.ibb.co/bJ78G92/Seasonal-Decomposition.png)
 
-  Grafik <i> time series </i> dipecah menjadi komponen-komponen tren, seasonal, dan residu. Komponen tren menunjukkan tren yang muncul, Seasonal menunjukkan ada atau tidaknya pola seasonal, dan residu menunjukkan berapa pergeseran dari nilai yang seharusnya. Dari visualisasi tersebut dapat dilihat bahwa secara jangka panjang terdapat tren naik, sedangkan secara jangkap pendek-menengah terdapat tren turun. Grafik harga juga memiliki pola seasonal bersamaan dengan tren.
+  Gambar 4. Seasonal Decomposition Fitur Close
+
+  Pada gambar 4, grafik <i> time series </i> dipecah menjadi komponen-komponen tren, seasonal, dan residu. Komponen tren menunjukkan tren yang muncul, Seasonal menunjukkan ada atau tidaknya pola seasonal, dan residu menunjukkan berapa pergeseran dari nilai yang seharusnya. Dari visualisasi tersebut dapat dilihat bahwa secara jangka panjang terdapat tren naik, sedangkan secara jangkap pendek-menengah terdapat tren turun. Grafik harga juga memiliki pola seasonal bersamaan dengan tren.
 
 ## Data Preparation
 
@@ -156,15 +164,19 @@ Metrik MSE bekerja dengan cara merata-ratakan jumlah dari selisih antara nilai s
 
 ### Hasil Evaluasi
 
-![Gambar Evaluasi MSE](https://ibb.co/nMMM0zcy)
+![Gambar Hasil Evaluasi Mean Squared Error Model Prophet dan LSTM](https://i.ibb.co/tppph8s/Error-Evaluation.png)
 
-Model Prophet memiliki <i> error </i> yang lebih kecil pada fase <i> train </i> dan fase <i> validation </i>.
+Gambar 5. Hasil Evaluasi Mean Squared Error Model Prophet dan LSTM
+
+Pada gambar 5, Model Prophet memiliki <i> error </i> yang lebih kecil pada fase <i> train </i> dan fase <i> validation </i>.
 
 ### Hasil <i>Forecasting</i>
 
-![Gambar Hasil Forecasting](https://ibb.co/k3yQD5d)
+![Gambar Hasil Forecasting Harga Saham ANTM 2024 - 2025](https://i.ibb.co/3fsBF4J/Forecasting.png)
 
-Berdasarkan grafik prediksi harga saham ANTM selama satu tahun, dapat diperkirakan bahwa waktu yang terbaik untuk membeli saham ANTM pada saat harga berada pada kisaran 1.350 - 1.400 dan menjualnya untuk <i> take profit </i> terdekat pada level 1.700
+Gambar 6. Hasil Forecasting Harga Saham ANTM 2024 - 2025
+
+Berdasarkan grafik prediksi harga saham ANTM selama satu tahun pada gambar 6, dapat diperkirakan bahwa waktu yang terbaik untuk membeli saham ANTM pada saat harga berada pada kisaran 1.350 - 1.400 dan menjualnya untuk <i> take profit </i> terdekat pada level 1.700
 
 ## REFERENSI
 

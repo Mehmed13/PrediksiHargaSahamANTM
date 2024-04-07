@@ -2,20 +2,21 @@
 
 ## Domain Proyek
 
-Saham adalah bukti kepemilikan atas suatu perusahaan. Saham menjadi salah satu instrumen investasi yang populer karena return yang ditawarkan tinggi dengan risiko yang tinggi pula. Risiko yang tinggi ini muncul karena tidak ada yang tahu pasti bagaimana harga sebuah saham di masa depan, terutama saham pertambangan. Saham ini memiliki tingkat volatilitas yang tinggi, misalnya saham ANTM. Harga saham ANTM bergerak mengikuti perubahan harga material dunia, terutama harga nikel dan emas.
+Saham adalah bukti kepemilikan atas suatu perusahaan [1]. Saham menjadi salah satu instrumen investasi yang populer karena return yang ditawarkan tinggi, tentunya dengan risiko yang tinggi pula. Risiko yang tinggi ini muncul karena tidak ada yang tahu pasti bagaimana harga sebuah saham di masa depan. Secara umum, harga saham ditentukan oleh respons pasar terhadap kinerja dan prospek suatu perusahaan. Perusahaan dengan kinerja dan prospek yang bagus cenderung akan mengalami kenaikan harga saham, ataupun sebaliknya.
+
+Analisis harga saham dapat dikelompokkan menjadi dua teknik, yaitu analisis fundamental dan analisis teknikal. Analisis fundamental adalah analisis yang berfokus pada kinerja perusahaan. Analisis ini biasanya dilakukan dengan menggunakan data dari laporan keuangan perusahaan. Analisis ini bagus digunakan untuk investasi jangka panjang karena kinerja perusahaan dapat membentuk sebuah tren yang kokoh. Meskipun begitu, analisis fundamental tidak mampu memprediksi harga saham dalam jangka pendek karena adanya volatilitas harga yang disebabkan oleh sentimen pasar. Untuk itu, dibutuhkan analisis yang kedua, yaitu analisis teknikal. Analisis ini murni bergantung pada pola-pola yang dibentuk harga saham berdasarkan data historis yang ada [2]. Akibatnya, analisis teknikal mampu memprediksi harga saham dalam jangka pendek dengan lebih baik karena responsivitasnya terhadap perubahan harga.
+
+Saham di sektor pertambangan adalah salah satu saham yang sulit untuk diprediksi pergerakan harganya. Hal ini disebabkan oleh faktor penggerak harga saham yang tidak hanya murni dari kinerja perusahaan, tetapi juga harga material tambang perusahaan tersebut [3]. Material tambang ini juga memiliki volatilitas yang tinggi dan dipengaruhi oleh banyak faktor lain juga. Misalnya, harga emas sangat dipengaruhi oleh kestabilan ekonomi dunia, sedangkan harga nikel belakangan ini sangat didorong oleh pengembangan kendaraan listrik. Faktor-faktor tersebut juga yang membuat saham di sektor pertambangan memiliki tingkat volatilitas yang tinggi, misalnya saham ANTM.
+
+ANTM adalah kode saham dari perusahaan Badan Usaha Milik Negara (BUMN), PT Aneka Tambang Tbk yang selanjutnya akan disebut sebagai Antam. Perusahaan ini adalah perusahaan yang bergerak di sektor pertambangan dengan fokus utama pada penambangan emas dan nikel. Penjualan emas berkontribusi atas 62% total penjualan Antam, sedangkan penjualan nikel berkontribusi atas 33% total penjualan Antam. Akibatnya, harga saham ANTM bergerak mengikuti perubahan harga material dunia, terutama harga emas dan nikel. Sebagai contoh, harga saham ANTM melambung hingga lebih dari 100% sebagai akibat dari pandemi Covid-19 pada tahun 2020 lalu. Pada saat itu, terjadi ketidakstabilan ekonomi dan inflasi yang tinggi. Hal ini membuat masyarakat berbondong-bondong membeli emas yang dikenal <i>safe haven</i> untuk mengamankan aset mereka.
 
 Prediksi harga saham dibutuhkan untuk memberikan sebuah <i>baseline</i> bagi investor. Dengan demikian, mereka bisa menentukan waktu terbaik untuk menjual dan membeli saham sehingga keuntungan yang diperoleh menjadi maksimal. Prediksi harga saham ini bisa dilakukan dengan menggunakan teknik <i> time series forecasting </i> menggunakan pola yang dibentuk dari harga saham di masa lampau.
 
-**Referensi:**
-
-- [Prophet](https://facebook.github.io/prophet/)<br>
-- [A survey on long short-term memory networks for time series prediction](https://www.sciencedirect.com/science/article/pii/S2212827121003796) <br>
-- [Stock Forecasting Using Prophet vs. LSTM Model Applying
-  Time-Series Prediction](http://paper.ijcsns.org/07_book/202202/20220224.pdf)
-
 ## Business Understanding
 
-Berdasarkan uraian latar belakang dari permasalahan pada domain, dapat dijabarkan <i> problem statements </i> dan <i> goals </i> proyek ini sebagai berikut.
+Prediksi saham yang akurat dapat membuat investor mampu bergerak selangkah lebih maju. Hal ini tentunya dapat meningkatkan keuntungan dari investor dengan kemampuan untuk membeli saham pada harga rendah, dan menjualnya pada harga yang lebih tinggi. Selain memaksimalkan keuntungan, prediksi saham yang akurat juga mampu menghindarkan investor dair kerugian yang besar dengan kemampuan untuk menjual saham sebelumnya harganya menjadi turun lebih dalam. Dengan demikian, sistem prediksi saham diharapkan dapat membantu investor dalam membuat keputusan bisnis yang tepat sebelum harga saham yang diprediksi menjadi kenyataan.
+
+Berdasarkan uraian latar belakang dari permasalahan pada domain dan latar belakang bisnis tersebut, dapat dijabarkan <i> problem statements </i> dan <i> goals </i> proyek ini sebagai berikut.
 
 ### Problem Statements
 
@@ -31,8 +32,8 @@ Berdasarkan uraian latar belakang dari permasalahan pada domain, dapat dijabarka
 
 ### Solution statements
 
-- Model FBProphet
-- Model <i>Long-Short Term Memory</i> (LSTM)
+- Model FBProphet. Performa diukur melalui perhitungan nilai mean squared error. Model dikatakan baik apabila error yang ada maksimal 10% dari <i> range </i> data.
+- Model <i>Long-Short Term Memory</i> (LSTM) [4]. Performa diukur melalui perhitungan nilai mean squared error. Model dikatakan baik apabila error yang ada maksimal 10% dari <i> range </i> data.
 
 ## Data Understanding
 
@@ -61,25 +62,25 @@ Fitur yang digunakan mulai dari EDA hingga tahap Forecasting hanya 'Date' dan 'C
 
 - <i> Time Series Plot </i>
 
-  ![Gambar Harga Saham ANTM](https://drive.google.com/uc?export=download&id=1l6xBTXkD25lccLsX3-o2tyIcLAHzWmFu)
+  ![Gambar Harga Saham ANTM](https://ibb.co/VLmWgFH)
 
   Harga Saham ANTM bergerak <i> seasonal</i> dalam tren turun secara landai sebelum tahun 2020. Setelah itu, saham ANTM mengalami kenaikan drastis selama tahun 2020 yang disebabkan oleh krisis ekonomi selama pandemi COVID-19. Memasuki tahun 2021 hingga sekarang, harga saham ANTM bergerak secara <i>seasonal</i> dengan tren turun dalam jangka panjang.
 
 - Distribusi Nilai
 
-  ![Gambar Distribusi Nilai Fitur Close ](https://drive.google.com/uc?export=download&id=1lDm1-ncJXAowfo-G4AndHVO1AT4T5KCk)
+  ![Gambar Distribusi Nilai Fitur Close ](https://ibb.co/RDbtvM1)
 
   Nilai pada fitur Close tidak terdistribusi normal
 
 - <i>Outliers Identification </i>
 
-  ![Gambar Boxplot Fitur Close ](https://drive.google.com/uc?export=download&id=1lElwNPzGpClnkIpnUJYbeNfvZtwqX4Hq)
+  ![Gambar Boxplot Fitur Close ](https://ibb.co/ySFQcQ2)
 
   Identifikasi dilakukan menggunakan teknik IQR dengan visualisasi dari boxplot. Hasil identifikasi tersebut adalah tidak ditemukan adanya outlier pada data
 
 - <i> Seasonal Decomposition </i>
 
-  ![Gambar Seasonal Decomposition](https://drive.google.com/uc?export=download&id=1lH3QNFSm2Lp7Tv21FHZ0782zmLT8oF5X)
+  ![Gambar Seasonal Decomposition](https://ibb.co/JQCMSJy)
 
   Grafik <i> time series </i> dipecah menjadi komponen-komponen tren, seasonal, dan residu. Komponen tren menunjukkan tren yang muncul, Seasonal menunjukkan ada atau tidaknya pola seasonal, dan residu menunjukkan berapa pergeseran dari nilai yang seharusnya. Dari visualisasi tersebut dapat dilihat bahwa secara jangka panjang terdapat tren naik, sedangkan secara jangkap pendek-menengah terdapat tren turun. Grafik harga juga memiliki pola seasonal bersamaan dengan tren.
 
@@ -149,18 +150,28 @@ Model final yang akan digunakan adalah model Prophet karena memiliki <i> error <
 Metrik Evaluasi yang digunakan pada proyek ini adalah <i> Mean Square Error </i> (MSE). <br>
 Formula MSE:
 
-$$ MSE = \frac{1}{n} \sum_{i=1}^n (y_{i}-y_{pred,i})^2$$
+$$ MSE = \frac{1}{n} \sum*{i=1}^n (y*{i}-y\_{pred,i})^2$$
 
 Metrik MSE bekerja dengan cara merata-ratakan jumlah dari selisih antara nilai sebenarnya dengan nilai prediksi (<i>error</i>) lalu rata-rata tersebut diakarkan sehingga nilai yang dihasilkan metrik tidak memiliki skala yang besar.
 
 ### Hasil Evaluasi
 
-![Gambar Evaluasi MSE](https://drive.google.com/uc?export=download&id=1lKAoi_spaS51Cx2ot1lmS_FPNINB9Asy)
+![Gambar Evaluasi MSE](https://ibb.co/nMMM0zcy)
 
 Model Prophet memiliki <i> error </i> yang lebih kecil pada fase <i> train </i> dan fase <i> validation </i>.
 
 ### Hasil <i>Forecasting</i>
 
-![Gambar Hasil Forecasting](https://drive.google.com/uc?export=download&id=1lVvv-mCtDoXINzLjr0WnJImoFSaSU0Hd)
+![Gambar Hasil Forecasting](https://ibb.co/k3yQD5d)
 
 Berdasarkan grafik prediksi harga saham ANTM selama satu tahun, dapat diperkirakan bahwa waktu yang terbaik untuk membeli saham ANTM pada saat harga berada pada kisaran 1.350 - 1.400 dan menjualnya untuk <i> take profit </i> terdekat pada level 1.700
+
+## REFERENSI
+
+[1] &nbsp;&nbsp;&nbsp;&nbsp; Manh, Ha & Duong, & Siliverstovs, Boriss & Manh, & Duong, Ha, "The Stock Market and Investment", 2006.
+
+[2] &nbsp;&nbsp;&nbsp;&nbsp;Han, Yufeng and Liu, Yang and Zhou, Guofu and Zhu, Yingzi, "Technical Analysis in the Stock Market", 2021.
+
+[3] &nbsp;&nbsp;&nbsp;&nbsp; Antono, Zakia & Jaharadak, Adam Amril & Khatibi, Abdul, "Analysis of factors affecting stock prices in mining sector: Evidence from Indonesia Stock Exchange. Management Science Letters. 9. 1701-1710. 10.5267/j.msl.2019.5.018", 2019.
+
+[4]&nbsp;&nbsp;&nbsp;&nbsp; Bandhu, Kailash Chandra & Litoriya, Ratnesh & Jain, Anshita & Shukla, Anand & Vaidya, Swati, "An improved technique for stock price prediction on real-time exploiting stream processing and deep learning. Multimedia Tools and Applications. 1-21. 10.1007/s11042-023-17130-x", 2023.
